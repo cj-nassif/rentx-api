@@ -1,4 +1,4 @@
-# Notas typescript
+# Notas sobre a aplicação
 
 ### Instalando express
 - [x] yarn add express
@@ -238,7 +238,7 @@ https://hub.docker.com/search
 
 ### Banco de dados em aplicações Node
 
-### Type ORM
+### TypeORM
 
 https://typeorm.io/
 
@@ -255,9 +255,13 @@ https://typeorm.io/
 ```
 
 Comando para ver em qual Ip está rodando o nosso container:
-- sudo docker exec database_ignite cat /etc/hosts 
+- [x] sudo docker exec database_ignite cat /etc/hosts 
   
 ---
+
+### Instruções de refatoração do docker com typeorm
+
+https://www.notion.so/Refatora-o-Docker-com-TypeORM-4500fc0d075349ac9b97d670e734d41b
 
 ### Migrations - Versionamento na criação de tabelas
 
@@ -267,15 +271,15 @@ Após criado a migration surge um link no terminal que dá acesso ao arquivo que
 
 Rodando migrations: 
 
-- yarn typeorm migration:run
+- [x] yarn typeorm migration:run
 
 Comando caso deseje reverter uma migration
-- yarn typeorm migration:revert
+- [x] yarn typeorm migration:revert
 
 ### TSyringe - Facilitador para injeção de dependências
 
 https://github.com/microsoft/tsyringe
-- yarn add tsyringe
+- [x] yarn add tsyringe
 
 ### Deletando specification direto do beekeeper studio
 
@@ -285,7 +289,7 @@ https://github.com/microsoft/tsyringe
 
 ### Criando uma migration para deletar uma coluna da tabela
 
-- yarn typeorm migration:create -n AlterUserDeleteUsername
+- [x] yarn typeorm migration:create -n AlterUserDeleteUsername
 
 ```ts
 import { MigrationInterface, QueryRunner, TableColumn } from "typeorm";
@@ -310,15 +314,44 @@ export class AlterUserDeleteUsername1663756675162
 ```
 
 Em seguida, de comando para rodar essa migration
-- yarn typeorm migration:run 
+- [x] yarn typeorm migration:run 
 
 ### Bcrypt - lidando com encriptação de senhas
 
-- yarn add bcrypt
-- yarn add @types/bcrypt -D
+- [x] yarn add bcrypt
+- [x] yarn add @types/bcrypt -D
 
+### JWT - Json Web Token : Autenticação de usuário
 
-  
+https://jwt.io/
+
+- [x] yarn add jsonwebtoken
+- [x] yarn add @types/jsonwebtoken -D
+
+#### função sign() do jsonwebtoken
+- Envia-se 3 parâmetros.
+1. No primeiro, enviamos o payload;
+2. No segundo, palavra secreta que irá auxiliar na criação do json web token. Utilizar o https://www.md5hashgenerator.com/ ou site similar para gerar um MD5 Hash que irá ser utilizado como esse segundo parâmetro.
+3. O terceiro parâmetro recebe um objeto com "subject" que receberá o id do usuário e "expiresIn" que será o tempo no qual o token irá expirar. 
+
+#### Função verify() do jsonwebtoken
+- Envia-se dois parâmetros:
+1. No primeiro, enviamos o token que recebemos do usúario;
+2. No segundo, enviamos o MD5 hash que criamos e enviamos pela função sign(); 
+---
+### Deletando um usuário direto do beekeeper que não queria apagar pelo comando gráfico pelo mouse.
+
+Criado um novo arquivo Query e colocado o seguinte comando:
+
+```sql
+delete from users where id = '7782e390-f28b-488e-bf15-79271f75bb3f'
+```
+
+---
+
+### Express-async-error - Lib para o express lidar com erros
+
+- [x] yarn add express-async-errors
 
 
 
