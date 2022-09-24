@@ -353,6 +353,17 @@ delete from users where id = '7782e390-f28b-488e-bf15-79271f75bb3f'
 
 - [x] yarn add express-async-errors
 
+### Função stat e unlink
+
+```ts
+try {
+    await fs.promises.stat(filename); // stat verifica se o arquivo existe
+  } catch {
+    return;
+  }
+  await fs.promises.unlink(filename); // unlink remove o arquivo de acordo com o filename que for passado
+  ```
+
 
 
 
