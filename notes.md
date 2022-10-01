@@ -267,6 +267,7 @@ https://www.notion.so/Refatora-o-Docker-com-TypeORM-4500fc0d075349ac9b97d670e734
 
 Criando uma migration (o comando abaixo se trata da criação de uma migration de criação de categorias):
 - yarn typeorm migration:create -n CreateCategories 
+  
 Após criado a migration surge um link no terminal que dá acesso ao arquivo que deve ser editado. Após editar esse arquivo, realizar o comando run, conforme abaixo:
 
 Rodando migrations: 
@@ -364,12 +365,115 @@ try {
   await fs.promises.unlink(filename); // unlink remove o arquivo de acordo com o filename que for passado
   ```
 
+### Desafios Chapter III
+
+- Instruções Desafio 1
+https://www.notion.so/Desafio-01-Database-Queries-8d97dae581d5446e97555c43d301ee45
+
+- Template Desafio 1
+https://github.com/rocketseat-education/ignite-template-database-queries
+
+- Como usar um template no github
+https://www.notion.so/FAQ-Desafios-ddd8fcdf2339436a816a0d9e45767664
+
+- Criando database do desafio: 
+- [x] sudo docker run --name ignite-challenge-database-queries -e POSTGRES_DB=queries_challenge -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+
+Antes desse comando foi necessário parar o database do rentx pois estavam configurados para a mesma porta.
+
+- Artigo para ajudar na resolução do desafio
+https://www.webdevdrops.com/nodejs-banco-de-dados-orm-query-builder-driver-nativo/
+https://stackoverflow.com/questions/64060713/how-to-join-a-table-in-typeorm-with-innerjoinandselect-service
 
 
+## Chapter IV
 
+### Testes unitários
 
+- Testa as regras de negócios. Teste em pequenas partes da aplicação como o useCase de criação de usuário.
 
+### Testes de integração
 
+- Testa todo o fluxo da aplicação:
+
+-> routes -> controllers -> useCases -> repository
+
+<- repository <- useCases <- controllers <- routes
+
+### TDD - Test Driven Development
+
+- Metodologia utilizada para fazer testes em que o desenvolvimento é direcionado pelos testes. O teste vêm primeiro.
+
+### Jest - Lib para testes
+
+https://jestjs.io/docs/getting-started
+
+- [x] yarn add jest @types/jest -D
+
+- [x] yarn jest --init
+
+- Perguntas de configuração do jest:
+
+ Would you like to use Jest when running "test" script in "package.json"? … yes
+
+✔ Would you like to use Typescript for the configuration file? … yes
+
+✔ Choose the test environment that will be used for testing › node
+
+✔ Do you want Jest to add coverage reports? … no
+
+✔ Which provider should be used to instrument code for coverage? › v8
+
+✔ Automatically clear mock calls, instances, contexts and results before every test? … yes
+
+### Preset instalado junto com o jest
+
+- [x] yarn add ts-jest -D
+
+- editar descomentando as seguintes linha do jest.config.ts :
+  
+  ```ts
+  preset: "ts-jest",
+  ``` 
+
+  ```ts
+  testMatch: ["**/*.spec.ts"],
+  ```
+
+  ```ts
+  bail: true,
+  ```
+
+### Exemplo de teste
+
+```ts
+describe("Criar categoria", () => {
+  it("Espero que 2 + 2 seja 4", () => {
+    const soma = 2 + 2;
+    const resultado = 5;
+
+    expect(soma).toBe(resultado);
+  });
+});
+```
+
+### Reload VS Code
+
+1. Ctrl + shift + P
+2. Pesquisar Reload windown
+
+### Lidando com paths configurados no tsconfig
+  
+- [x] yarn add tsconfig-paths -D
+1. Editado scripts do package.json
+
+```ts
+"scripts": {
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
+    "test": "jest"
+  },
+```
 
 
 
