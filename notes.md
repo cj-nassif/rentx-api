@@ -475,6 +475,9 @@ describe("Criar categoria", () => {
   },
 ```
 
+### Tabelas de relacionamentos
 
+Uma tabela que trás dados de duas tabelas que se relacionam.
 
+Normalmente utilizamos o nome da tabela de relacionamento a junção do nome de duas tabelas. Ex: Nome da tabela em que as tabelas cars e specification se relacionam seria specification_cars.
 
